@@ -11,10 +11,10 @@ class Flutterflappyaes {
   static const MethodChannel _channel = const MethodChannel('flutterflappyaes');
 
   //进行aes加密
-  static Future<String> aesEncrypt(
+  static Future<String> aesEncryptCBC(
       String data, String aeskey, String iv) async {
     final String aes = await _channel
-        .invokeMethod('aesEncrypt', {"data": data, "aeskey": aeskey, "iv": iv});
+        .invokeMethod('aesEncryptCBC', {"data": data, "aeskey": aeskey, "iv": iv});
     return aes;
   }
 
@@ -26,10 +26,10 @@ class Flutterflappyaes {
   }
 
   //进行aes解密
-  static Future<String> aesDecrypt(
+  static Future<String> aesDecryptCBC(
       String data, String aeskey, String iv) async {
     final String aes = await _channel
-        .invokeMethod('aesDecrypt', {"data": data, "aeskey": aeskey, "iv": iv});
+        .invokeMethod('aesDecryptCBC', {"data": data, "aeskey": aeskey, "iv": iv});
     return aes;
   }
 

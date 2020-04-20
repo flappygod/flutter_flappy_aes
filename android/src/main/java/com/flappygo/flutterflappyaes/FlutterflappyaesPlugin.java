@@ -42,7 +42,7 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         //AES加密
-        if (call.method.equals("aesEncrypt")) {
+        if (call.method.equals("aesEncryptCBC")) {
             String data = call.argument("data");
             String aeskey = call.argument("aeskey");
             String iv = call.argument("iv");
@@ -65,7 +65,7 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
             }
         }
         //AES解密
-        else if (call.method.equals("aesDecrypt")) {
+        else if (call.method.equals("aesDecryptCBC")) {
             String data = call.argument("data");
             String aeskey = call.argument("aeskey");
             String iv = call.argument("iv");

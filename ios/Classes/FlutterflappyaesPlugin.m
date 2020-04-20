@@ -12,7 +12,7 @@
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     //AES加密
-    if([@"aesEncrypt" isEqualToString:call.method]){
+    if([@"aesEncryptCBC" isEqualToString:call.method]){
         //获取加密字符串
         NSString* data=(NSString*)call.arguments[@"data"];
         //获取秘钥
@@ -41,7 +41,7 @@
         
     }
     //AES解密
-    else if([@"aesDecrypt" isEqualToString:call.method]){
+    else if([@"aesDecryptCBC" isEqualToString:call.method]){
         //获取加密字符串
         NSString* data=(NSString*)call.arguments[@"data"];
         //获取秘钥

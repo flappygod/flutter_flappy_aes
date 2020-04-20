@@ -27,10 +27,10 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      String strOne = await Flutterflappyaes.aesEncrypt(
+      String strOne = await Flutterflappyaes.aesEncryptCBC(
           "123", "1234567812345678","1234567812345678");
       print("Start:::" + strOne);
-      String strTwo = await Flutterflappyaes.aesDecrypt(
+      String strTwo = await Flutterflappyaes.aesDecryptCBC(
           strOne, "1234567812345678","1234567812345678");
       print("Stop:::" + strTwo);
     } on PlatformException {
