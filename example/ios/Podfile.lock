@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutterflappyaes (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutterflappyaes (from `.symlinks/plugins/flutterflappyaes/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutterflappyaes:
+    :path: ".symlinks/plugins/flutterflappyaes/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutterflappyaes: 335a4fb99934ee6aedc9b84dfa71b3c396e2a239
+
+PODFILE CHECKSUM: f32fb4e7c14f8b3ca19a369d7be425dd9241af27
+
+COCOAPODS: 1.9.1
