@@ -21,7 +21,7 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-        channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "flutterflappyaes");
+        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutterflappyaes");
         channel.setMethodCallHandler(this);
     }
 
