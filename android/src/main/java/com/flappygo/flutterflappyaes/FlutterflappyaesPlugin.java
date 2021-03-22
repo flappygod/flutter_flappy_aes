@@ -35,8 +35,10 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
     // depending on the user's project. onAttachedToEngine or registerWith must both be defined
     // in the same class.
     public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutterflappyaes");
-        channel.setMethodCallHandler(new FlutterflappyaesPlugin());
+        FlutterflappyaesPlugin instance = new FlutterflappyaesPlugin();
+        MethodChannel channel = new MethodChannel(registrar.messenger(), "flutterflappyaes");
+        instance.channel = channel;
+        channel.setMethodCallHandler(instance);
     }
 
     @Override
