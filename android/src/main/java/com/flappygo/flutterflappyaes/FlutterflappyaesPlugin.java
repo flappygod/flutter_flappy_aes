@@ -43,7 +43,7 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        //AES加密
+        //aes
         if (call.method.equals("aesEncryptCBC")) {
             String data = call.argument("data");
             String aeskey = call.argument("aeskey");
@@ -55,7 +55,7 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
                 result.success("");
             }
         }
-        //AES加密ECB
+        //ecb
         else if (call.method.equals("aesEncryptECB")) {
             String data = call.argument("data");
             String aeskey = call.argument("aeskey");
@@ -66,7 +66,7 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
                 result.success("");
             }
         }
-        //AES解密
+        //aes
         else if (call.method.equals("aesDecryptCBC")) {
             String data = call.argument("data");
             String aeskey = call.argument("aeskey");
@@ -78,7 +78,7 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
                 result.success("");
             }
         }
-        //AES解密ECB
+        //ecb
         else if (call.method.equals("aesDecryptECB")) {
             String data = call.argument("data");
             String aeskey = call.argument("aeskey");
