@@ -11,15 +11,11 @@
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
-    //AES加密
+    //aesEncryptCBC
     if([@"aesEncryptCBC" isEqualToString:call.method]){
-        //获取加密字符串
         NSString* data=(NSString*)call.arguments[@"data"];
-        //获取秘钥
         NSString* aeskey=(NSString*)call.arguments[@"aeskey"];
-        //偏移量
         NSString* iv=(NSString*)call.arguments[@"iv"];
-        //进行CBC加密
         NSString* ret= [Aes128 AesCBC128Encrypt:data
                                         withKey:aeskey
                                          withIv:iv];
@@ -27,28 +23,21 @@
         result(ret);
         
     }
-    //AESECB加密
+    //aesEncryptECB
     else if([@"aesEncryptECB" isEqualToString:call.method]){
-        //获取加密字符串
         NSString* data=(NSString*)call.arguments[@"data"];
-        //获取秘钥
         NSString* aeskey=(NSString*)call.arguments[@"aeskey"];
-        //进行CBC加密
         NSString* ret= [Aes128 AES128Encrypt:data
                                      withKey:aeskey];
         
         result(ret);
         
     }
-    //AES解密
+    //aesDecryptCBC
     else if([@"aesDecryptCBC" isEqualToString:call.method]){
-        //获取加密字符串
         NSString* data=(NSString*)call.arguments[@"data"];
-        //获取秘钥
         NSString* aeskey=(NSString*)call.arguments[@"aeskey"];
-        //偏移量
         NSString* iv=(NSString*)call.arguments[@"iv"];
-        //进行CBC解密
         NSString* ret= [Aes128 AesCBC128Decrypt:data
                                         withKey:aeskey
                                          withIv:iv];
@@ -56,16 +45,12 @@
         result(ret);
         
     }
-    //AESECB解密
+    //aesDecryptECB
     else if([@"aesDecryptECB" isEqualToString:call.method]){
-        //获取加密字符串
         NSString* data=(NSString*)call.arguments[@"data"];
-        //获取秘钥
         NSString* aeskey=(NSString*)call.arguments[@"aeskey"];
-        //进行CBC解密
         NSString* ret= [Aes128 AES128Decrypt:data
                                      withKey:aeskey];
-        
         result(ret);
         
     } else {

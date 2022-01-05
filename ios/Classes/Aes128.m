@@ -12,7 +12,7 @@
 
 @implementation Aes128
 
-//CBC方式加密
+
 +(NSString *)AesCBC128Encrypt:(NSString *)text
                       withKey:(NSString *)key
                        withIv:(NSString *)iv
@@ -52,7 +52,7 @@
     return nil;
 }
 
-//CBC方式解密
+
 +(NSString *)AesCBC128Decrypt:(NSString *)text
                       withKey:(NSString *)key
                        withIv:(NSString *)iv
@@ -67,7 +67,7 @@
     bzero(ivPtr, sizeof(ivPtr));
     [iv getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding];
     
-    //先转换为data
+
     NSData* data=[Base64 dataWithBase64EncodedString:text];
     
     NSUInteger dataLength = [data length];
@@ -95,13 +95,7 @@
 }
 
 
-/**
- *  AES128加密
- *
- *  @param text 原文
- *  @param key 秘钥
- *  @return 加密好的字符串
- */
+
 +(NSString *)AES128Encrypt:(NSString *)text
                    withKey:(NSString *)key
 {
@@ -136,13 +130,7 @@
 }
 
 
-/**
- *  AES128解密
- *
- *  @param text  密文
- *  @param key  秘钥
- *  @return 明文
- */
+
 +(NSString *)AES128Decrypt:(NSString *)text
                    withKey:(NSString *)key
 {
@@ -150,7 +138,6 @@
     memset(keyPtr, 0, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
     
-    //先转换为data
     NSData* data=[Base64 dataWithBase64EncodedString:text];
     
     NSUInteger dataLength = [data length];

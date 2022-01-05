@@ -22,23 +22,11 @@
                     withIv:(NSString *)iv;
 
 
-/**
- *  AES128加密
- *
- *  @param text 原文
- *  @param key 秘钥
- *  @return 加密好的字符串
- */
+//AES128 ecb Encrypt
 +(NSString *)AES128Encrypt:(NSString *)text
                    withKey:(NSString *)key;
 
-/**
- *  AES128解密
- *
- *  @param text  密文
- *  @param key  秘钥
- *  @return 明文
- */
+//AES128 ecb Decrypt
 +(NSString *)AES128Decrypt:(NSString *)text
                    withKey:(NSString *)key;
 

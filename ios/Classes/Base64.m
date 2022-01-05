@@ -16,10 +16,8 @@
 
 #import "Base64.h"
 
-//引入IOS自带密码库
 #import <CommonCrypto/CommonCryptor.h>
 
-//空字符串
 #define     LocalStr_None           @""
 
 static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -29,12 +27,9 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 + (NSString *)base64StringFromText:(NSString *)text
 {
     if (text && ![text isEqualToString:LocalStr_None]) {
-        //取项目的bundleIdentifier作为KEY  改动了此处
         //NSString *key = [[NSBundle mainBundle] bundleIdentifier];
         NSData *data = [text dataUsingEncoding:NSUTF8StringEncoding];
-        //IOS 自带DES加密 Begin  改动了此处
         //data = [self DESEncrypt:data WithKey:key];
-        //IOS 自带DES加密 End
         return [self base64EncodedStringFrom:data];
     }
     else {
@@ -45,12 +40,9 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 + (NSString *)textFromBase64String:(NSString *)base64
 {
     if (base64 && ![base64 isEqualToString:LocalStr_None]) {
-        //取项目的bundleIdentifier作为KEY   改动了此处
         //NSString *key = [[NSBundle mainBundle] bundleIdentifier];
         NSData *data = [self dataWithBase64EncodedString:base64];
-        //IOS 自带DES解密 Begin    改动了此处
         //data = [self DESDecrypt:data WithKey:key];
-        //IOS 自带DES加密 End
         return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
     else {
@@ -58,15 +50,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     }
 }
 
-/******************************************************************************
- 函数名称 : + (NSData *)DESEncrypt:(NSData *)data WithKey:(NSString *)key
- 函数描述 : 文本数据进行DES加密
- 输入参数 : (NSData *)data
- (NSString *)key
- 输出参数 : N/A
- 返回参数 : (NSData *)
- 备注信息 : 此函数不可用于过长文本
- ******************************************************************************/
+
 + (NSData *)DESEncrypt:(NSData *)data WithKey:(NSString *)key
 {
     char keyPtr[kCCKeySizeAES256+1];
@@ -95,15 +79,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     return nil;
 }
 
-/******************************************************************************
- 函数名称 : + (NSData *)DESEncrypt:(NSData *)data WithKey:(NSString *)key
- 函数描述 : 文本数据进行DES解密
- 输入参数 : (NSData *)data
- (NSString *)key
- 输出参数 : N/A
- 返回参数 : (NSData *)
- 备注信息 : 此函数不可用于过长文本
- ******************************************************************************/
+
 + (NSData *)DESDecrypt:(NSData *)data WithKey:(NSString *)key
 {
     char keyPtr[kCCKeySizeAES256+1];
@@ -133,14 +109,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     return nil;
 }
 
-/******************************************************************************
- 函数名称 : + (NSData *)dataWithBase64EncodedString:(NSString *)string
- 函数描述 : base64格式字符串转换为文本数据
- 输入参数 : (NSString *)string
- 输出参数 : N/A
- 返回参数 : (NSData *)
- 备注信息 :
- ******************************************************************************/
+
 + (NSData *)dataWithBase64EncodedString:(NSString *)string
 {
     if (string == nil)
@@ -207,14 +176,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     return [NSData dataWithBytesNoCopy:bytes length:length];
 }
 
-/******************************************************************************
- 函数名称 : + (NSString *)base64EncodedStringFrom:(NSData *)data
- 函数描述 : 文本数据转换为base64格式字符串
- 输入参数 : (NSData *)data
- 输出参数 : N/A
- 返回参数 : (NSString *)
- 备注信息 :
- ******************************************************************************/
+
 + (NSString *)base64EncodedStringFrom:(NSData *)data
 {
     if ([data length] == 0)
