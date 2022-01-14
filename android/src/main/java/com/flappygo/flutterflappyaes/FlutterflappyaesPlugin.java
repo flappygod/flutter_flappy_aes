@@ -45,48 +45,48 @@ public class FlutterflappyaesPlugin implements FlutterPlugin, MethodCallHandler 
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         //aes
         if (call.method.equals("aesEncryptCBC")) {
-            String data = call.argument("data");
-            String aeskey = call.argument("aeskey");
-            String iv = call.argument("iv");
             try {
+                String data = call.argument("data");
+                String aeskey = call.argument("aeskey");
+                String iv = call.argument("iv");
                 String str = AESTool.EncryptCBC(data, aeskey, iv);
                 result.success(str);
             } catch (Exception e) {
-                result.success("");
+                result.error("error", e.getMessage(), e.getLocalizedMessage());
             }
         }
         //ecb
         else if (call.method.equals("aesEncryptECB")) {
-            String data = call.argument("data");
-            String aeskey = call.argument("aeskey");
             try {
+                String data = call.argument("data");
+                String aeskey = call.argument("aeskey");
                 String str = AESTool.EncryptECB(data, aeskey);
                 result.success(str);
             } catch (Exception e) {
-                result.success("");
+                result.error("error", e.getMessage(), e.getLocalizedMessage());
             }
         }
         //aes
         else if (call.method.equals("aesDecryptCBC")) {
-            String data = call.argument("data");
-            String aeskey = call.argument("aeskey");
-            String iv = call.argument("iv");
             try {
+                String data = call.argument("data");
+                String aeskey = call.argument("aeskey");
+                String iv = call.argument("iv");
                 String str = AESTool.DecryptCBC(data, aeskey, iv);
                 result.success(str);
             } catch (Exception e) {
-                result.success("");
+                result.error("error", e.getMessage(), e.getLocalizedMessage());
             }
         }
         //ecb
         else if (call.method.equals("aesDecryptECB")) {
-            String data = call.argument("data");
-            String aeskey = call.argument("aeskey");
             try {
+                String data = call.argument("data");
+                String aeskey = call.argument("aeskey");
                 String str = AESTool.DecryptECB(data, aeskey);
                 result.success(str);
             } catch (Exception e) {
-                result.success("");
+                result.error("error", e.getMessage(), e.getLocalizedMessage());
             }
         } else {
             result.notImplemented();
