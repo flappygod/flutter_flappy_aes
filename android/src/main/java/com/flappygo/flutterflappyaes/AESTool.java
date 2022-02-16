@@ -15,6 +15,9 @@ public class AESTool {
 
     //Encrypt CBC
     public static String EncryptCBC(String sSrc, String sKey, String iv) throws Exception {
+        if (sKey == null) {
+            throw new RuntimeException("Key is null");
+        }
         //set iv
         IvParameterSpec zeroIv = new IvParameterSpec(iv.getBytes());
         //keybyte
@@ -33,6 +36,9 @@ public class AESTool {
 
     //Decrypt CBC
     public static String DecryptCBC(String sSrc, String sKey, String iv) throws Exception {
+        if (sKey == null) {
+            throw new RuntimeException("Key is null");
+        }
         //set iv
         IvParameterSpec zeroIv = new IvParameterSpec(iv.getBytes());
         //bytes
@@ -58,9 +64,6 @@ public class AESTool {
         if (sKey == null) {
             throw new RuntimeException("Key is null");
         }
-        if (sKey.length() != 16) {
-            throw new RuntimeException("Key must be 16 bit");
-        }
         //keybyte
         byte[] raw = sKey.getBytes("utf-8");
         //AES
@@ -79,9 +82,6 @@ public class AESTool {
     public static String DecryptECB(String sSrc, String sKey) throws Exception {
         if (sKey == null) {
             throw new RuntimeException("Key is null");
-        }
-        if (sKey.length() != 16) {
-            throw new RuntimeException("Key must be 16 bit");
         }
         //bytes
         byte[] raw = sKey.getBytes("utf-8");
