@@ -1,7 +1,6 @@
 package com.flappygo.flutterflappyaes;
 
 import android.util.Base64;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -18,13 +17,16 @@ public class AESTool {
         if (sKey == null) {
             throw new RuntimeException("Key is null");
         }
+        if (sKey.length() != 16 && sKey.length() != 32) {
+            throw new RuntimeException("Key length must be 16 or 32");
+        }
         //set iv
         IvParameterSpec zeroIv = new IvParameterSpec(iv.getBytes());
         //keybyte
         byte[] raw = sKey.getBytes("utf-8");
         //aes
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
-        //AES/CBC/PKCS5Padding
+        //"AES/CBC/PKCS5Padding"
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         //Encrypt
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, zeroIv);
@@ -39,6 +41,9 @@ public class AESTool {
         if (sKey == null) {
             throw new RuntimeException("Key is null");
         }
+        if (sKey.length() != 16 && sKey.length() != 32) {
+            throw new RuntimeException("Key length must be 16 or 32");
+        }
         //set iv
         IvParameterSpec zeroIv = new IvParameterSpec(iv.getBytes());
         //bytes
@@ -50,7 +55,7 @@ public class AESTool {
         //set
         cipher.init(Cipher.DECRYPT_MODE, skeySpec, zeroIv);
         //base 64
-        byte[] encrypted1 = Base64.decode(sSrc, Base64.DEFAULT);
+        byte[] encrypted1 =  Base64.decode(sSrc, Base64.DEFAULT);
         //original
         byte[] original = cipher.doFinal(encrypted1);
         //set string
@@ -63,6 +68,9 @@ public class AESTool {
     public static String EncryptECB(String sSrc, String sKey) throws Exception {
         if (sKey == null) {
             throw new RuntimeException("Key is null");
+        }
+        if (sKey.length() != 16 && sKey.length() != 32) {
+            throw new RuntimeException("Key length must be 16 or 32");
         }
         //keybyte
         byte[] raw = sKey.getBytes("utf-8");
@@ -83,7 +91,10 @@ public class AESTool {
         if (sKey == null) {
             throw new RuntimeException("Key is null");
         }
-        //bytes
+        if (sKey.length() != 16 && sKey.length() != 32) {
+            throw new RuntimeException("Key length must be 16 or 32");
+        }
+        //keybyte
         byte[] raw = sKey.getBytes("utf-8");
         //AES
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
@@ -92,7 +103,7 @@ public class AESTool {
         //Decrypt
         cipher.init(Cipher.DECRYPT_MODE, skeySpec);
         //base64
-        byte[] encrypted1 = Base64.decode(sSrc, Base64.DEFAULT);
+        byte[] encrypted1 =  Base64.decode(sSrc, Base64.DEFAULT);
         //Decrypt
         byte[] original = cipher.doFinal(encrypted1);
         //ret string
@@ -100,4 +111,6 @@ public class AESTool {
         //return
         return originalString;
     }
+
+
 }
