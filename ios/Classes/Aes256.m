@@ -1,23 +1,23 @@
 //
-//  AES128CBC_No_Padding_Unit.m
+//  Aes256.m
+//  flutterflappyaes
 //
-//
-//  Created by apple on 14-5-13.
-//  Copyright (c) 2014年 akforsure. All rights reserved.
+//  Created by lijunlin on 2/19/22.
 //
 
-#import "Aes128.h"
+#import "Aes256.h"
 #import "Base64.h"
 #import "NSData+CommonCrypto.h"
 
-@implementation Aes128
+@implementation Aes256
 
 
-+(NSString *)AesCBC128Encrypt:(NSString *)text
+
++(NSString *)AesCBC256Encrypt:(NSString *)text
                       withKey:(NSString *)key
                        withIv:(NSString *)iv
 {
-    char keyPtr[kCCKeySizeAES128+1];
+    char keyPtr[kCCKeySizeAES256+1];
     memset(keyPtr, 0, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
     
@@ -36,7 +36,7 @@
                                           kCCAlgorithmAES,
                                           kCCOptionPKCS7Padding,
                                           keyPtr,
-                                          kCCKeySizeAES128,
+                                          kCCKeySizeAES256,
                                           ivPtr,
                                           [data bytes],
                                           dataLength,
@@ -53,12 +53,12 @@
 }
 
 
-+(NSString *)AesCBC128Decrypt:(NSString *)text
++(NSString *)AesCBC256Decrypt:(NSString *)text
                       withKey:(NSString *)key
                        withIv:(NSString *)iv
 {
     
-    char keyPtr[kCCKeySizeAES128 + 1];
+    char keyPtr[kCCKeySizeAES256 + 1];
     memset(keyPtr, 0, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
     
@@ -67,7 +67,7 @@
     bzero(ivPtr, sizeof(ivPtr));
     [iv getCString:ivPtr maxLength:sizeof(ivPtr) encoding:NSUTF8StringEncoding];
     
-
+    
     NSData* data=[Base64 dataWithBase64EncodedString:text];
     
     NSUInteger dataLength = [data length];
@@ -79,7 +79,7 @@
                                           kCCAlgorithmAES,
                                           kCCOptionPKCS7Padding,
                                           keyPtr,
-                                          kCCKeySizeAES128,
+                                          kCCKeySizeAES256,
                                           ivPtr,
                                           [data bytes],
                                           dataLength,
@@ -96,10 +96,10 @@
 
 
 
-+(NSString *)AES128Encrypt:(NSString *)text
++(NSString *)AES256Encrypt:(NSString *)text
                    withKey:(NSString *)key
 {
-    char keyPtr[kCCKeySizeAES128+1];
+    char keyPtr[kCCKeySizeAES256+1];
     memset(keyPtr, 0, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
     
@@ -113,7 +113,7 @@
                                           kCCAlgorithmAES,
                                           kCCOptionPKCS7Padding|kCCOptionECBMode,
                                           keyPtr,
-                                          kCCKeySizeAES128,
+                                          kCCKeySizeAES256,
                                           NULL,
                                           [data bytes],
                                           dataLength,
@@ -131,10 +131,10 @@
 
 
 
-+(NSString *)AES128Decrypt:(NSString *)text
++(NSString *)AES256Decrypt:(NSString *)text
                    withKey:(NSString *)key
 {
-    char keyPtr[kCCKeySizeAES128 + 1];
+    char keyPtr[kCCKeySizeAES256 + 1];
     memset(keyPtr, 0, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
     
@@ -149,7 +149,7 @@
                                           kCCAlgorithmAES,
                                           kCCOptionPKCS7Padding|kCCOptionECBMode,
                                           keyPtr,
-                                          kCCKeySizeAES128,
+                                          kCCKeySizeAES256,
                                           NULL,
                                           [data bytes],
                                           dataLength,
